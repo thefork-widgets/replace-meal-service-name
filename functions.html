@@ -1,0 +1,44 @@
+<!--- Replace services headings --->
+<script type="text/javascript">
+if (document.getElementById('ng-app') != null)
+{
+	// {original service name: "New service name"}
+	const newServicesNames = {breakfast:"Brunch", colazione:"Brunch", cena: "Picoteo"};
+
+	function debounce(func, wait, immediate) {
+		var timeout;
+		return function() {
+			var context = this, args = arguments;
+			var later = function() {
+				timeout = null;
+				if (!immediate) func.apply(context, args);
+			};
+			var callNow = immediate && !timeout;
+			clearTimeout(timeout);
+			timeout = setTimeout(later, wait);
+			if (callNow) func.apply(context, args);
+		};
+	};
+	document.getElementById('ng-app').addEventListener('DOMSubtreeModified', debounce((event) => {
+	var divReservationTime = document.querySelector('#lunch-list');
+	
+    if (document.body.contains(divReservationTime)) { 
+    	let servicesHeading = document.getElementsByClassName('dhpStep-subHeader');
+        if( window.location.href.search( 'customer' )==-1 && window.location.href.search( 'thank-you' )==-1 && window.location.href.search( 'payment' )==-1  ){
+	        for (let heading of servicesHeading) {
+	            for (let key in newServicesNames) {
+	                if($(heading).text().trim().toLowerCase() == key.toLowerCase() ){
+	                    $(heading).html(newServicesNames[key]);
+	                }        
+	            }
+	        }
+        } 
+    }
+        
+	})
+	, 100)
+
+}
+
+</script>
+
