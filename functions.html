@@ -20,24 +20,22 @@ if (document.getElementById('ng-app') != null)
 		};
 	};
 	document.getElementById('ng-app').addEventListener('DOMSubtreeModified', debounce((event) => {
-	var divReservationTime = document.querySelector('#lunch-list');
-	
-    if (document.body.contains(divReservationTime)) { 
-    	let servicesHeading = document.getElementsByClassName('dhpStep-subHeader');
-        if( window.location.href.search( 'customer' )==-1 && window.location.href.search( 'thank-you' )==-1 && window.location.href.search( 'payment' )==-1  ){
-	        for (let heading of servicesHeading) {
-	            for (let key in newServicesNames) {
-	                if($(heading).text().trim().toLowerCase() == key.toLowerCase() ){
-	                    $(heading).html(newServicesNames[key]);
-	                }        
-	            }
-	        }
-        } 
-    }
-        
+		var divReservationTime = document.querySelector('#lunch-list');
+		
+	    if (document.body.contains(divReservationTime)) { 
+	    	let servicesHeading = document.getElementsByClassName('dhpStep-subHeader');
+	        if( window.location.href.search( 'customer' )==-1 && window.location.href.search( 'thank-you' )==-1 && window.location.href.search( 'payment' )==-1  ){
+		        for (let heading of servicesHeading) {
+		            for (let key in newServicesNames) {
+		                if($(heading).text().trim().toLowerCase() == key.toLowerCase() ){
+		                    $(heading).html(newServicesNames[key]);
+		                }        
+		            }
+		        }
+	        } 
+	    }    
 	})
 	, 100)
-
 }
 
 </script>
